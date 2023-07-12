@@ -14,6 +14,14 @@ public class Main {
         UserAuthentication userAuth = new UserAuthentication();
         getUserFromConsole(userAuth);
     }
+
+    /**
+     * This method checks if the Id already exists or not in the file. If the Id exists, then it authenticates against
+     * the saved details in the file and allows the user to create db, create table, insert values,
+     * delete row, and update table
+     * If the Id doesn't exist, then it stores the details in the file.
+     * @param userAuth An object of userAuthentication is passed
+     */
     private static void getUserFromConsole(UserAuthentication userAuth) {
         Scanner scanner = new Scanner(System.in);
 
@@ -112,6 +120,13 @@ public class Main {
                 userAuth.saveUsersToFile();
             }
     }
+
+    /**
+     *
+     * @param password This method takes the useriNput password and hashes it and stores the hashed password
+     *                 in the file
+     * @return
+     */
     static String hashPassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -127,6 +142,13 @@ public class Main {
         }
         return null;
     }
+
+    /**
+     *
+     * @param ID This method takes userInput Id as the parameter value and checks if the Id exists in the file
+     *           or not
+     * @return If the ID exists, then return value  - true. If Id doesn't exist, return value false.
+     */
     public static boolean isIDExists(String ID) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USER_FILE_PATH))) {
             String line;
@@ -143,6 +165,11 @@ public class Main {
         }
         return false; // ID does not exist in the file
     }
+
+    /**
+     * It retrives the saved user info already saved in the file.
+     * @param userAuth passes an object of userAuthentication
+     */
     private static void loadUsersFromFile(UserAuthentication userAuth) {
         try (BufferedReader reader = new BufferedReader(new FileReader(USER_FILE_PATH))) {
             String line;

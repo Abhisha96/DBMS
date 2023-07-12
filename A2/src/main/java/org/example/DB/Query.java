@@ -12,6 +12,7 @@ public class Query {
     private Queryfile queryFile; // Link to the QueryFile - where all operations of file are performed
     private String databaseName; //Stores the databaseName
     private static File folderPath; // Stores the folderPath of the database
+    private Helper helper;
     public String getDatabaseName() {
         return databaseName;
     }
@@ -23,6 +24,7 @@ public class Query {
         queryFile = new Queryfile();
         folderPath = new File("C://Users//AVuser//csci5408_s23_b00937694_abhisha_thaker//A2//");
         regexP = new RegexPatternMatcher();
+        helper = new Helper();
     }
     public static File getFolderPath() {
         return folderPath;
@@ -123,6 +125,7 @@ public class Query {
     // INSERT OPERATION
 
     /**
+     * First, the query is separated using matchingregex and then it's inserted into the file
      *
      * @param query String - e.g. INSERT INTO Krishna (EmployeeID, FirstName, LastName, Age, DepartmentID) VALUES (8, 'Mayur', 'Krishna', 89, 90);
      * @param databaseName String - e.g. Name of the database in which you want to create this table.
@@ -158,6 +161,13 @@ public class Query {
         System.out.println(valuesPart);
     }
     // SELECT OPERATION
+
+    /**
+     *
+     * @param query takes in the userinput query
+     * @param databaseName takes in the databaseName inputted by user
+     *
+     */
     public void selectValues(String query,String databaseName) {
 
         System.out.println(getFolderPath());
@@ -212,15 +222,15 @@ public class Query {
                 // Split the line into values (assuming comma-separated values)
                 String[] values = line.split(",");
                 // Retrieve the value for the specified column
-                String columnValue = getTrimmedValue(attributeNames[getColumnIndex(targetRowName,attributeNames)]);
+                String columnValue = helper.getTrimmedValue(attributeNames[helper.getColumnIndex(targetRowName,attributeNames)]);
                 System.out.println(columnValue);
                 // Check if the column value matches the target value
-                String lineNumberValue = getTrimmedValue(String.valueOf(lineNumber));
+                String lineNumberValue = helper.getTrimmedValue(String.valueOf(lineNumber));
                 System.out.println(lineNumberValue);
-                if (columnValue.equals(targetRowName) && targetValue.equals(values[getColumnIndex(columnValue,attributeNames)])) {
+                if (columnValue.equals(targetRowName) && targetValue.equals(values[helper.getColumnIndex(columnValue,attributeNames)])) {
                     System.out.println(targetRowName);
                     // Retrieve the value of the target column
-                    String value = getTrimmedValue(values[getColumnIndex(columnName,attributeNames)]);
+                    String value = helper.getTrimmedValue(values[helper.getColumnIndex(columnName,attributeNames)]);
                     System.out.println(columnName + "" + value);
                 }
                 lineNumber++;
@@ -230,28 +240,13 @@ public class Query {
         }
     }
 
-    private static int getColumnIndex(String columnName,String[] attributeName) {
-           if (columnName.equalsIgnoreCase(attributeName[0].trim())) {
-               return 0;
-           } else if (columnName.equalsIgnoreCase(attributeName[1].trim())) {
-               return 1;
-           } else if (columnName.equalsIgnoreCase(attributeName[2].trim())) {
-               return 2;
-           } else if (columnName.equalsIgnoreCase(attributeName[3].trim())) {
-               return 3;
-           } else if (columnName.equalsIgnoreCase(attributeName[4].trim())) {
-               return 4;
-           }
-        return -1;
-    }
-
-    // Helper method to remove leading/trailing whitespace and single quotes from a value
-    private static String getTrimmedValue(String value) {
-        return value.trim().replaceAll("'", "");
-    }
-
     // UPDATE queries
 
+    /**
+     *
+     * @param query takes in the userinput update query
+     * @param databaseName takes in the userinput databasename
+     */
     public void updateValues(String query,String databaseName) {
         // Execute the UPDATE query
         System.out.println(getFolderPath());
@@ -313,17 +308,17 @@ public class Query {
                 // Split the line into values (assuming comma-separated values)
                 String[] values = line.split(",");
                 // Retrieve the value for the specified column
-                String columnValue = getTrimmedValue(attributeNames[getColumnIndex(targetRowName,attributeNames)]);
+                String columnValue = helper.getTrimmedValue(attributeNames[helper.getColumnIndex(targetRowName,attributeNames)]);
                 System.out.println(columnValue);
                 // Check if the column value matches the target value
-                String lineNumberValue = getTrimmedValue(String.valueOf(lineNumber));
+                String lineNumberValue = helper.getTrimmedValue(String.valueOf(lineNumber));
                 System.out.println(lineNumberValue);
                 linesFinal.add(line);
-                if (columnValue.equals(targetRowName) && targetValue.equals(values[getColumnIndex(columnValue,attributeNames)])) {
+                if (columnValue.equals(targetRowName) && targetValue.equals(values[helper.getColumnIndex(columnValue,attributeNames)])) {
                     System.out.println(targetRowName);
                     // Retrieve the value of the target column
-                    values[getColumnIndex(columnName,attributeNames)] = updateToValue;
-                    String value = values[getColumnIndex(columnName,attributeNames)];
+                    values[helper.getColumnIndex(columnName,attributeNames)] = updateToValue;
+                    String value = values[helper.getColumnIndex(columnName,attributeNames)];
                     System.out.println(columnName + "" + value);
                     String updatedLine = String.join(", ", values);
                     linesFinal.remove(Integer.parseInt(lineNumberValue));
@@ -346,6 +341,11 @@ public class Query {
         }
     }
 
+    /**
+     *
+     * @param query takes in the passed delete query
+     * @param databaseName takes in the user input databaseName
+     */
     public void deleteValues(String query,String databaseName) {
         // example query - DELETE FROM Krishna WHERE FirstName='Mayur';
         // Execute the DELETE query
@@ -398,23 +398,23 @@ public class Query {
                 // Split the line into values (assuming comma-separated values)
                 String[] values = line.split(",");
                 System.out.println(values);
-                System.out.println(values[getColumnIndex(targetRowName,attributeNames)]);
+                System.out.println(values[helper.getColumnIndex(targetRowName,attributeNames)]);
                 // Retrieve the value for the specified column
-                String columnValue = getTrimmedValue(attributeNames[getColumnIndex(targetRowName,attributeNames)]);
+                String columnValue = helper.getTrimmedValue(attributeNames[helper.getColumnIndex(targetRowName,attributeNames)]);
                 System.out.println(columnValue);
                 // Check if the column value matches the target value
-                String lineNumberValue = getTrimmedValue(String.valueOf(lineNumber));
+                String lineNumberValue = helper.getTrimmedValue(String.valueOf(lineNumber));
                 System.out.println(lineNumberValue);
                 linesFinal.add(line);
              //   System.out.println(values[getColumnIndex(columnValue,attributeNames)]);
                // System.out.println(values[line.indexOf(targetValue)]);
-                if (columnValue.equals(targetRowName) && targetValue.equals(values[getColumnIndex(columnValue,attributeNames)])) {
+                if (columnValue.equals(targetRowName) && targetValue.equals(values[helper.getColumnIndex(columnValue,attributeNames)])) {
                     System.out.println(targetValue);
                     System.out.println(lineNumberValue);
                     System.out.println(targetRowName);
                     // Retrieve the value of the target column
                    // values[getColumnIndex(columnName,attributeNames)] = updateToValue;
-                    String value = values[getColumnIndex(columnValue,attributeNames)];
+                    String value = values[helper.getColumnIndex(columnValue,attributeNames)];
                     System.out.println(columnValue + "" + value);
                   //  String updatedLine = String.join(", ", values);
                     linesFinal.remove(Integer.parseInt(lineNumberValue));

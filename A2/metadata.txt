@@ -1,0 +1,87 @@
+Table_Name:Employees
+Attribute:EmployeeID INT PRIMARY KEY
+Attribute:FirstName VARCHAR(50)
+Attribute:LastName VARCHAR(50)
+Attribute:Age INT
+Attribute:DepartmentID INTTable_Name:Employee_1
+Attribute:EmployeeID INT PRIMARY KEY
+Attribute:FirstName VARCHAR(50)
+Attribute:LastName VARCHAR(50)
+Attribute:Age INT
+Attribute:DepartmentID INT
+
+Table_Name:Employee_2
+Attribute:EmployeeID INT PRIMARY KEY
+Attribute:FirstName VARCHAR(50)
+Attribute:LastName VARCHAR(50)
+Attribute:Age INT
+Attribute:DepartmentID INT
+
+Table_Name:Krishna
+Attribute:EmployeeID
+Attribute:FirstName
+Attribute:LastName
+Attribute:Age
+Attribute:DepartmentID) VALUES (1
+Attribute:'John'
+Attribute:'Doe'
+Attribute:30
+Attribute:1)
+Attribute:(2
+Attribute:'Jane'
+Attribute:'Smith'
+Attribute:35
+Attribute:2)
+Attribute:(3
+Attribute:'Michael'
+Attribute:'Johnson'
+Attribute:28
+Attribute:1)
+Attribute:(4
+Attribute:'Emily'
+Attribute:'Williams'
+Attribute:32
+Attribute:3
+
+Table_Name:users
+Attribute:id INT
+
+Table_Name:users
+Attribute:id INT
+Attribute:name VARCHAR(50)
+Attribute:email VARCHAR(100)
+
+Table_Name:users
+Attribute:id INT
+Attribute:name VARCHAR(50)
+Attribute:email VARCHAR(100)
+
+Table_Name:users
+Attribute:id INT
+Attribute:name VARCHAR(50)
+Attribute:email VARCHAR(100)
+
+Table_Name:users
+Attribute:id INT
+Attribute:name VARCHAR(50)
+Attribute:email VARCHAR(100)
+
+Table_Name:users
+Attribute:id INT
+Attribute:name VARCHAR(50)
+Attribute:email VARCHAR(100)
+
+Table_Name:users
+
+Table_Name:users
+Attribute:id INT
+Attribute:name VARCHAR(50)
+Attribute:email VARCHAR(100)
+
+Table_Name:users
+Attribute:id INT
+
+Table_Name:users
+Attribute:id INT
+Attribute:name VARCHAR(50)
+Attribute:email VARCHAR(100)

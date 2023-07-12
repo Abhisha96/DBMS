@@ -4,9 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegexPatternMatcher {
-    static String extractColumnInsertQuery(String columnNames) {
+    /**
+     *
+     * @param query : insert query is passed
+     * @return : regex matcher columnames
+     */
+    static String extractColumnInsertQuery(String query) {
         Pattern pattern = Pattern.compile("INSERT INTO \\w+\\s*\\(([^)]+)\\)",Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(columnNames);
+        Matcher matcher = pattern.matcher(query);
 
         if (matcher.find()) {
             String attributeList = matcher.group(1);
@@ -15,10 +20,16 @@ public class RegexPatternMatcher {
         }
         return null;
     }
-    static String extractValuesInsertQuery(String values) {
+
+    /**
+     *
+     * @param query insert query is passed
+     * @return returns extracted matching values as per the regex passsed
+     */
+    static String extractValuesInsertQuery(String query) {
         Pattern pattern = Pattern.compile("VALUES\\s*([\\s\\S]+);", Pattern.CASE_INSENSITIVE);
        // Pattern pattern = Pattern.compile("VALUES(.+?)");
-        Matcher matcher = pattern.matcher(values);
+        Matcher matcher = pattern.matcher(query);
         if (matcher.find()) {
             System.out.println(matcher.group(1));
             return matcher.group(1);
@@ -26,6 +37,11 @@ public class RegexPatternMatcher {
         return "";
     }
 
+    /**
+     *
+     * @param query takes in the select query
+     * @return the condition after where
+     */
      String extractSelectCondition(String query) {
         Pattern conditionPattern = Pattern.compile("WHERE\\s*(.+)",Pattern.CASE_INSENSITIVE);
         Matcher conditionMatcher = conditionPattern.matcher(query);
@@ -39,6 +55,12 @@ public class RegexPatternMatcher {
         }
         return null;
     }
+
+    /**
+     *
+     * @param query takes in the select query
+     * @return return tablename in between select and from
+     */
      String extractSelectColumnName(String query) {
 
         Pattern columnPattern = Pattern.compile("SELECT(.+?)FROM", Pattern.CASE_INSENSITIVE);
@@ -53,13 +75,16 @@ public class RegexPatternMatcher {
         }
         return null;
     }
+
+    /**
+     *
+     * @param query takes in the select query
+     * @return returns tablename between from and where
+     */
      static String extractSelectTableName(String query) {
         String tableName = "";
 
-        // Regular expression pattern to match the table name
-        //String pattern = "(?i)\\bfrom\\s+([a-zA-Z_][a-zA-Z0-9_]*)\\b";
         String pattern = "FROM(.+?)WHERE";
-        // Create a pattern object
         Pattern regexPattern = Pattern.compile(pattern,Pattern.CASE_INSENSITIVE);
 
         // Create a matcher object
@@ -71,6 +96,12 @@ public class RegexPatternMatcher {
         }
         return tableName;
     }
+
+    /**
+     *
+     * @param query takes in update condition
+     * @return returns the condition after where
+     */
     String extractUpdateCondition(String query) {
         Pattern conditionPattern = Pattern.compile("WHERE(.+)",Pattern.CASE_INSENSITIVE);
         Matcher conditionMatcher = conditionPattern.matcher(query);
@@ -82,6 +113,11 @@ public class RegexPatternMatcher {
         return null;
     }
 
+    /**
+     *
+     * @param query takes in the update query
+     * @return returns the column to be updated and value to be set to
+     */
     String extractUpdateColumnNameValue(String query) {
         Pattern updatePattern = Pattern.compile("SET(.+?)WHERE", Pattern.CASE_INSENSITIVE);
         Matcher updateMatcher = updatePattern.matcher(query);
@@ -100,6 +136,11 @@ public class RegexPatternMatcher {
         return null;
     }
 
+    /**
+     *
+     * @param query takes in the update query
+     * @return returns the tablename beteween update and set
+     */
     String extractUpdateTableName(String query) {
         Pattern tablePattern = Pattern.compile("UPDATE\\s*(.+?)\\s*SET", Pattern.CASE_INSENSITIVE);
         Matcher tableMatcher = tablePattern.matcher(query);
@@ -110,6 +151,12 @@ public class RegexPatternMatcher {
         }
         return null;
     }
+
+    /**
+     *
+     * @param query takes in the delete query
+     * @return condition that is passed in the delete query after where
+     */
     String extractDeleteCondition(String query) {
         Pattern conditionPattern = Pattern.compile("WHERE(.+)",Pattern.CASE_INSENSITIVE);
         Matcher conditionMatcher = conditionPattern.matcher(query);
@@ -121,6 +168,11 @@ public class RegexPatternMatcher {
         return null;
     }
 
+    /**
+     *
+     * @param query takes in the delete query
+     * @return returns the table name that is passed in the query between from and where
+     */
     String extractDeleteTableInfo(String query) {
         Pattern tablePattern = Pattern.compile("FROM(.+?)WHERE", Pattern.CASE_INSENSITIVE);
         Matcher tableMatcher = tablePattern.matcher(query);

@@ -10,6 +10,11 @@ public class Queryfile {
     Queryfile(Query query){
         this.q = query;
     }
+
+    /**
+     *
+     * @param tablename passes the tablename and creates the file with name as tablename inside the folderpath
+     */
     public void createFileTableName(String tablename){
         try {
             File file = new File(q.getFolderPath()+"//"+tablename+".txt");
@@ -23,6 +28,11 @@ public class Queryfile {
             System.out.println("An error occurred while creating the file: " + e.getMessage());
         }
     }
+
+    /**
+     * stores the tableinfo in the alltableinfo file
+     * @param tableName takes in the name as the tablename
+     */
     public void writeTableNamesToAllTableInfo(String tableName){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(q.getFolderPath()+"//"+"alltableinfo.txt",true))) {
             writer.newLine();
@@ -32,6 +42,12 @@ public class Queryfile {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     *  stores the tableinfo in the alltableinfo file
+     *      * @param tableName takes in the name as the tablename
+     */
     public void writeAttributeNamesToAllTableInfo(String columnName){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(q.getFolderPath()+"//"+"alltableinfo.txt",true))) {
             writer.write("ColumnName"+":"+columnName);// Write the content to the file
@@ -41,25 +57,12 @@ public class Queryfile {
             System.out.println("An error occurred while creating the file: " + e.getMessage());
         }
     }
-/*
-    public void writeAttributeNamesToTable(String attributeName,String tablename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(q.getFolderPath()+"//"+tablename+".txt",true))) {
-            writer.write(attributeName+"");// Write the content to the file
-            System.out.println("File created and content written successfully.");
-        } catch (IOException e) {
-            System.out.println("An error occurred while creating the file: " + e.getMessage());
-        }
-    }
 
-    public void writeValuesNamesToTable(String valueName,String tablename) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(q.getFolderPath()+"//"+tablename+".txt",true))) {
-            writer.write(valueName+"");// Write the content to the file
-        } catch (IOException e) {
-            System.out.println("An error occurred while creating the file: " + e.getMessage());
-        }
-    }
-
- */
+    /**
+     *
+     * @param fileName takes in the filename and
+     * @param value
+     */
      public void saveToFileInsert1(String fileName, String value) {
         Boolean checkLineExists = checkLineExists(fileName,value);
 

@@ -22,7 +22,7 @@ public class UserAuthentication {
     }
 
     /**
-     * save the passed user object values to file
+     * save the input user object values to file
      */
     public void saveUsersToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USER_FILE_PATH,true))) {
@@ -56,7 +56,7 @@ public class UserAuthentication {
 
     /**
      * taking id as the key, security answer is validated
-     * @param ID userinput id
+     ** @param ID userinput id
      * @param answer userinput password
      * @return
      */

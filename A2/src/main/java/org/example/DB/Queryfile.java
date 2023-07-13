@@ -4,15 +4,11 @@ import java.io.*;
 
 public class Queryfile {
     Query q;
-    Queryfile(){
+    public Queryfile(){
 
     }
-    Queryfile(Query query){
-        this.q = query;
-    }
-
     /**
-     *
+     * creates a new file with specified tablename inside the getFolderpath directory.
      * @param tablename passes the tablename and creates the file with name as tablename inside the folderpath
      */
     public void createFileTableName(String tablename){
@@ -30,7 +26,7 @@ public class Queryfile {
     }
 
     /**
-     * stores the tableinfo in the alltableinfo file
+     * Appends the tablename to the ‘alltableinfo.txt’ file
      * @param tableName takes in the name as the tablename
      */
     public void writeTableNamesToAllTableInfo(String tableName){
@@ -44,8 +40,8 @@ public class Queryfile {
     }
 
     /**
+     * appends the columnname with its datatypes to the alltableinfo.txt file.
      *
-     *  stores the tableinfo in the alltableinfo file
      *      * @param tableName takes in the name as the tablename
      */
     public void writeAttributeNamesToAllTableInfo(String columnName){
@@ -59,7 +55,7 @@ public class Queryfile {
     }
 
     /**
-     *
+     *appends just the columnames of the insert file to the file the name as the tableName. Internally, it checks if the columname values already exists in the file using checkLineexists method.
      * @param fileName takes in the filename and
      * @param value
      */
@@ -80,6 +76,13 @@ public class Queryfile {
         }
     }
     // checks whether the line exists or not
+
+    /**
+     *checks if the columnname value already exists in the file with the name as the tableNamev
+     * @param fileName
+     * @param value
+     * @return
+     */
     static boolean checkLineExists(String fileName, String value) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -96,7 +99,13 @@ public class Queryfile {
         return false;
     }
     // saves values from insert query to file2
-     static void saveToFileInsert2(String fileName, String value) {
+
+    /**
+     *appends the values of the insert file to the file with name as the tableName
+     * @param fileName
+     * @param value
+     */
+     public static void saveToFileInsert2(String fileName, String value) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName,true))) {
             //  writer.write(attribute);
             writer.write(value+" ");

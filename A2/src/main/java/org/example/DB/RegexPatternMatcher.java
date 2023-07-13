@@ -5,11 +5,12 @@ import java.util.regex.Pattern;
 
 public class RegexPatternMatcher {
     /**
-     *
+     *Extracts all the column names from an `INSERT` query.
      * @param query : insert query is passed
      * @return : regex matcher columnames
      */
-    static String extractColumnInsertQuery(String query) {
+    public static String extractColumnInsertQuery(String query) {
+        // word,whitespace,brackets, whitespace
         Pattern pattern = Pattern.compile("INSERT INTO \\w+\\s*\\(([^)]+)\\)",Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(query);
 
@@ -22,11 +23,11 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     *Extracts all the values from an `INSERT` query
      * @param query insert query is passed
      * @return returns extracted matching values as per the regex passsed
      */
-    static String extractValuesInsertQuery(String query) {
+    public static String extractValuesInsertQuery(String query) {
         Pattern pattern = Pattern.compile("VALUES\\s*([\\s\\S]+);", Pattern.CASE_INSENSITIVE);
        // Pattern pattern = Pattern.compile("VALUES(.+?)");
         Matcher matcher = pattern.matcher(query);
@@ -38,7 +39,7 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     * extracts the condition section after the `WHERE` keyword in a `SELECT` query
      * @param query takes in the select query
      * @return the condition after where
      */
@@ -57,7 +58,7 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     *This matches the pattern between the `SELECT` and `FROM` keywords and returns the column names as a string. If multiple column names are present (separated by commas), it only returns the first column name.
      * @param query takes in the select query
      * @return return tablename in between select and from
      */
@@ -77,7 +78,7 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     * uses pattern to match the table name between the `FROM` and `WHERE` keywords
      * @param query takes in the select query
      * @return returns tablename between from and where
      */
@@ -98,7 +99,7 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     * extracts the condition section after the `WHERE` keyword in an `UPDATE` query
      * @param query takes in update condition
      * @return returns the condition after where
      */
@@ -114,7 +115,7 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     *splits the values between set and  where into individual column name and value. And returns the pair as a concatenated string
      * @param query takes in the update query
      * @return returns the column to be updated and value to be set to
      */
@@ -137,7 +138,7 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     *Extracts the tableName. Uses regex expression pattern to match the tableName between UPDATE and SET and returns the matched value as the string.
      * @param query takes in the update query
      * @return returns the tablename beteween update and set
      */
@@ -153,7 +154,7 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     *Extracts and returns the condition section after the WHERE keyword in a delete query.
      * @param query takes in the delete query
      * @return condition that is passed in the delete query after where
      */
@@ -169,7 +170,7 @@ public class RegexPatternMatcher {
     }
 
     /**
-     *
+     *match the tableName between ‘FROM’ and ‘WHERE’
      * @param query takes in the delete query
      * @return returns the table name that is passed in the query between from and where
      */

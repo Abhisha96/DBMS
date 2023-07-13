@@ -17,9 +17,9 @@ public class Main {
 
     /**
      * This method checks if the Id already exists or not in the file. If the Id exists, then it authenticates against
-     * the saved details in the file and allows the user to create db, create table, insert values,
+     * the saved details in the file by creating an instance of userAuth and allows the user to create db, create table, insert values,
      * delete row, and update table
-     * If the Id doesn't exist, then it stores the details in the file.
+     * If the Id doesn't exist, then it stores the details in the file by calling the method saveUsersToFile defined in the userAuth.
      * @param userAuth An object of userAuthentication is passed
      */
     private static void getUserFromConsole(UserAuthentication userAuth) {
@@ -122,9 +122,9 @@ public class Main {
     }
 
     /**
-     *
-     * @param password This method takes the useriNput password and hashes it and stores the hashed password
-     *                 in the file
+     *This method takes the useriNput password and hashes it and stores the hashed password
+     *      in the file
+     * @param password
      * @return
      */
     static String hashPassword(String password) {

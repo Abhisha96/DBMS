@@ -1,6 +1,12 @@
 package org.example.DB;
 
 public class Helper {
+    /**
+     * Finds the index of a column name from an array of attribute names.
+     * @param columnName
+     * @param attributeName
+     * @return int - 0,1,2,3,4
+     */
      static int getColumnIndex(String columnName,String[] attributeName) {
         if (columnName.equalsIgnoreCase(attributeName[0].trim())) {
             return 0;
@@ -17,6 +23,12 @@ public class Helper {
     }
 
     // Helper method to remove leading/trailing whitespace and single quotes from a value
+
+    /**
+     * Removes whitespace or single quotes characters from a value.
+     * @param value
+     * @return
+     */
     static String getTrimmedValue(String value) {
         return value.trim().replaceAll("'", "");
     }

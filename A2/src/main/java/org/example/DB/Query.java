@@ -30,11 +30,17 @@ public class Query {
         return folderPath;
     }
 
+    /**
+     *
+     * @param folderPath
+     * @param databaseName
+     */
     public void setFolderPath(File folderPath, String databaseName) {
         this.folderPath = new File(folderPath+"//"+databaseName);
     }
 
     /**
+     * It extracts the database name from the query, sets the necessary variables, creates the folder, and returns the database name if the folder creation is successful.
      * CREATES THE DATABASE FOLDER BASED ON THE DATABASENAME PROVIDED IN THE QUERY
      * @param query Inputtype > String - e.g. CREATE DATABASE db;
      * @return databaseName Inputtype > String - e.g. db
@@ -201,7 +207,7 @@ public class Query {
             operator = matcher.group(2);
             targetValue = matcher.group(3);
 
-            System.out.println("EmployeeId: " + targetRowName);
+            System.out.println("targetRowName: " + targetRowName);
             System.out.println("Operator: " + operator);
             System.out.println("Value: " + targetValue);
         } else {

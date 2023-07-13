@@ -1,1 +1,0 @@
-NSERT INTO Employees (EmployeeIDFirstNameLastNameAgeDepartmentID)EmployeeIDFirstNameLastNameAgeDepartmentID) VALUES (1'John''Doe'301

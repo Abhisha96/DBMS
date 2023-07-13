@@ -1,5 +1,0 @@
-
-Table_Name:users
-ColumnName:id INT
-ColumnName:name VARCHAR(50)
-ColumnName:email VARCHAR(100)

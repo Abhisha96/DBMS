@@ -1,2 +1,0 @@
-EmployeeID, FirstName, LastName, Age, DepartmentID
-(105, 'Abhisha', 'Thaker', 27, 201),(106,'Krishna','Nisha',28,102)

@@ -1,6 +1,0 @@
-EmployeeID
-FirstName
-LastName
-DateOfBirth
-Department
-Salary

@@ -14,7 +14,7 @@ public class ManualTesting {
         DatabaseManager databaseManager = new DatabaseManager();
 
         String query = "INSERT INTO tableName2 (column1, column2, column3) VALUES (value1, value2, value3);";
-            String databaseName = "dbName3";
+        String databaseName = "dbName3";
 
             // Manual Test Case 1: Valid Insert Query
             System.out.println("Manual Test Case 1 - Valid Insert Query");
@@ -48,4 +48,7 @@ public class ManualTesting {
         // Perform manual validation by checking the error message or database file.
     }
 }
+
+
+
 

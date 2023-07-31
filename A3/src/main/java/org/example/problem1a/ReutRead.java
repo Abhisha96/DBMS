@@ -33,15 +33,14 @@ public class ReutRead {
         // connect to the mongodb server
         try(MongoClient connectClient = new MongoClient(connectURL)){
             MongoDatabase db = connectClient.getDatabase("ReuterDb");
-            MongoCollection<Document> collection = db.getCollection("NewsArticle");
+            MongoCollection<Document> collection = db.getCollection("NewsArticles");
             Document textDocument = new Document();
 
             while (matcher.find()) {
-                String textcontent = matcher.group(4);
                 String titlecontent = matcher.group(5);
                 String datecontent = matcher.group(7);
                 String bodycontent = matcher.group(9);
-                textDocument = new Document("text",textcontent).append("title", titlecontent).append("dateline", datecontent).append("body", bodycontent);
+                textDocument = new Document("title", titlecontent).append("dateline", datecontent).append("body", bodycontent);
                 Document document = new Document("title", titlecontent).append("text",textDocument);
                 collection.insertOne(document);
             }

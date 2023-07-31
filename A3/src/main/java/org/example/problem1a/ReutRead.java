@@ -30,7 +30,7 @@ public class ReutRead {
 
         String mongoConnect = "mongodb://localhost:27017/";
         MongoClientURI connectURL = new MongoClientURI(mongoConnect);
-        // connect to the mongodb server
+
         try(MongoClient connectClient = new MongoClient(connectURL)){
             MongoDatabase db = connectClient.getDatabase("ReuterDb");
             MongoCollection<Document> collection = db.getCollection("NewsArticles");
@@ -45,7 +45,6 @@ public class ReutRead {
                 collection.insertOne(document);
             }
             System.out.println("connected to db success");
-
             }catch(Exception e){
             e.printStackTrace();
         }

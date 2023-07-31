@@ -125,10 +125,8 @@ public class problem2 {
         }
         JTable table = new JTable(model);
 
-        // Show the JTable in a JScrollPane
         JScrollPane scrollPane = new JScrollPane(table);
 
-        // Create a JFrame to hold the JScrollPane
         JFrame frame = new JFrame("Table");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(scrollPane);
@@ -143,10 +141,8 @@ public class problem2 {
         for (Map.Entry<String, Integer> entry : wordFrequencyMap.entrySet()) {
             String word = entry.getKey();
             int freq = entry.getValue();
-            System.out.print("\"" + word + "\":" + freq);
-            if (entry.getKey() != wordFrequencyMap.keySet().toArray()[wordFrequencyMap.size() - 1]) {
-                System.out.print(", ");
-            }
+            System.out.print("\"" + word+ ""+ "\":" + ""+ freq +"");
+            System.out.print(" ");
         }
         System.out.println("}");
     }
